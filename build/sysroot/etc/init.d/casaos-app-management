@@ -4,8 +4,8 @@
 
 description="CasaOS App Management Service"
 command="/usr/bin/casaos-app-management"
-command_args="-c $casaos_app_management_config"
-required_files=$casaos_app_management_config
+command_args="-c $app_management_config"
+required_files=$app_management_config
 pidfile="/var/run/casaos/app-management.pid"
 supervisor="supervise-daemon"
 
