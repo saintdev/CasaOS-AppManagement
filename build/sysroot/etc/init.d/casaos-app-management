@@ -1,0 +1,14 @@
+#!/sbin/openrc-run
+
+: ${app_management_config:=/etc/casaos/app-management.conf}
+
+description="CasaOS App Management Service"
+command="/usr/bin/casaos-app-management"
+command_args="-c $casaos_app_management_config"
+required_files=$casaos_app_management_config
+pidfile="/var/run/casaos/app-management.pid"
+supervisor="supervise-daemon"
+
+depend() {
+	need casaos-message-bus docker
+}
