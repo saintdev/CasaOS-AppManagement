@@ -8,7 +8,7 @@ import (
 
 	"github.com/IceWhaleTech/CasaOS-AppManagement/common"
 	interfaces "github.com/IceWhaleTech/CasaOS-Common"
-	"github.com/IceWhaleTech/CasaOS-Common/utils/systemctl"
+	"github.com/IceWhaleTech/CasaOS-Common/utils/init_system"
 )
 
 const (
@@ -54,8 +54,10 @@ func main() {
 		_logger.DebugMode = true
 	}
 
+	initMgr := init_system.NewInitManager()
+
 	if !*forceFlag {
-		isRunning, err := systemctl.IsServiceRunning(appManagementName)
+		isRunning, err := initMgr.IsServiceRunning(appManagementName)
 		if err != nil {
 			_logger.Error("Failed to check if %s is running", appManagementName)
 			panic(err)
